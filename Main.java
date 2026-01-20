@@ -22,6 +22,35 @@ public class Main {
                     addPets(sc, db);
                     break;
 
+                case 3:
+                    // Update
+                    if (db.size() == 0) {
+                        System.out.println("No pets to update.");
+                        break;
+                    }
+                    db.showAllPets();
+                    int updateId = readInt(sc, "Enter the pet ID you can to update: ");
+                    System.out.print("Enter new name and new age: ");
+                    String newName = sc.next();
+                    int newAge = readInt(sc, "");
+                    if (!db.updatePet(updateId, newName, newAge)) {
+                        System.out.println("Invalid ID.");
+                    }
+                    break;
+
+                case 4:
+                    // Remove
+                    if (db.size() == 0) {
+                        System.out.println("No pets to remove.");
+                        break;
+                    }
+                    db.showAllPets();
+                    int removeId = readInt(sc, "Enter the pet ID to remove: ");
+                    if (!db.removePet(removeId)) {
+                        System.out.println("Invalid ID.");
+                    }
+                    break;
+
                 case 5:
                     System.out.print("Enter a name to search: ");
                     String name = sc.next();
@@ -48,6 +77,8 @@ public class Main {
         System.out.println("What would you like to do?");
         System.out.println("1) View all pets");
         System.out.println("2) Add more pets");
+        System.out.println("3) Update an existing pet");
+        System.out.println("4) Remove an existing pet");
         System.out.println("5) Search pets by name");
         System.out.println("6) Search pets by age");
         System.out.println("7) Exit program");
