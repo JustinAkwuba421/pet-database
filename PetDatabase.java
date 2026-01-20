@@ -20,7 +20,7 @@ public class PetDatabase {
         printFooter(pets.size());
     }
 
-
+   // searrch
 
     public void searchByName(String name) {
         printHeader();
@@ -50,6 +50,35 @@ public class PetDatabase {
         printFooter(count);
     }
 
+    //update abd remove 
+
+    public boolean updatePet(int id, String newName, int newAge) {
+        if (id < 0 || id >= pets.size()) {
+            return false;
+        }
+
+        Pet p = pets.get(id);
+        String oldName = p.getName();
+        int oldAge = p.getAge();
+
+        p.setName(newName);
+        p.setAge(newAge);
+
+        System.out.println(oldName + " " + oldAge + " changed to " + newName + " " + newAge + ".");
+        return true;
+    }
+
+    public boolean removePet(int id) {
+        if (id < 0 || id >= pets.size()) {
+            return false;
+        }
+
+        Pet removed = pets.remove(id);
+        System.out.println(removed.getName() + " " + removed.getAge() + " is removed.");
+        return true;
+    }
+
+ 
 
     private void printHeader() {
         System.out.println("+----------------------+");
@@ -58,8 +87,7 @@ public class PetDatabase {
     }
 
     private void printRow(int id, Pet pet) {
-        System.out.printf("| %-3d| %-10s| %-4d|%n",
-                id, pet.getName(), pet.getAge());
+        System.out.printf("| %-3d| %-10s| %-4d|%n", id, pet.getName(), pet.getAge());
     }
 
     private void printFooter(int rows) {
